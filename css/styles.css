@@ -1,0 +1,95 @@
+/* Grund-Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000000;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between; /* Schiebt Logo nach links, Nav nach rechts */
+  align-items: center;        /* Zentriert alles vertikal */
+  padding: 20px 2%;          /* Abstand nach innen */
+  background-color: #000000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sanfter Schatten */
+  position: sticky;           /* Bleibt oben kleben */
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #06ff1a;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;           /* Entfernt die Aufzählungspunkte */
+  display: flex;
+  gap: 25px;                  /* Abstand zwischen den Links */
+}
+
+.nav-links a {
+  text-decoration: none;      /* Entfernt den Unterstrich */
+  color: #06ff1a;
+  transition: color 0.3s;     /* Sanfter Übergang beim Drüberfahren */
+}
+
+.nav-links a:hover {
+  color: #ff0000;             /* Farbe ändert sich beim Hovern */
+}
+
+/*Hero section*/
+
+.hero-section {
+  padding: 50px 10%;
+  text-align: center;
+  background-color: #000000;
+}
+
+.hero-section h1 {
+  margin-bottom: 30px;
+  color: #2ecc71; 
+}
+
+.hero-grid {
+  display: grid;
+  /* Erstellt 5 Spalten, die alle gleich breit sind (1fr = 1 fraction) */
+  grid-template-columns: repeat(5, 1fr); 
+  /* Abstand zwischen den Kästen */
+  gap: 20px; 
+}
+
+.box {
+  background-color: #ffffff;
+  color: rgb(255, 65, 65);
+  height: 150px; /* Höhe der Kästen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer;
+  overflow: hidden; /* Schneidet alles ab, was über den Rand der Box geht */
+  padding: 0;       /* Falls du vorher Padding hattest, nimm es für Bilder weg */
+  flex-shrink: 0; 
+  flex-basis: auto;
+}
+
+  .box img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* WICHTIG: Das Bild wird beschnitten, damit es nicht verzerrt */
+  display: block;   /* Entfernt kleine Lücken unter dem Bild */
+}
+
+/* Ein kleiner Effekt beim Drüberfahren */
+.box:hover {
+  transform: scale(1.05);
+  background-color: #0056b3;
+}
