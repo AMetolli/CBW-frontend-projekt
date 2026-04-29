@@ -1,0 +1,167 @@
+/* --- 1. GLOBALE VARIABLEN & BASIS --- */
+:root {
+    --bg: #050505;
+    --text: #FFFFFF;
+    --accent: #555555;
+    --header-h: 70px;
+    --news-h: 40px;
+}
+
+body.light-mode {
+    --bg: #FFFFFF;
+    --text: #050505;
+    --accent: #AAAAAA;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    padding-top: calc(var(--header-h) + var(--news-h));
+    transition: background 0.4s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 2. HEADER & NEWS BAR --- */
+.news-bar { 
+    position: fixed; top: 0; width: 100%; height: var(--news-h); 
+    background: #111; color: #888; display: flex; 
+    justify-content: center; align-items: center; 
+    font-size: 11px; z-index: 1001; 
+}
+
+.news-bar button { 
+    position: absolute; right: 20px; background: none; 
+    border: none; color: #888; cursor: pointer; 
+}
+
+.main-header {
+    height: var(--header-h); width: 100%; position: fixed;
+    top: var(--news-h); left: 0; z-index: 1000;
+    background: var(--bg); border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; padding: 0 40px; transition: all 0.3s ease;
+}
+
+.header-col { flex: 1; display: flex; align-items: center; }
+.center { justify-content: center; }
+.right { justify-content: flex-end; gap: 20px; }
+
+.logo-text { 
+    font-weight: 900; font-size: 14px; letter-spacing: 5px; 
+    text-decoration: none; color: var(--text); 
+}
+
+/* --- 3. NAV-PANEL (DROPDOWN) --- */
+.nav-panel {
+    position: absolute; top: var(--header-h); left: 0; width: 100%;
+    background: var(--bg); border-bottom: 1px solid rgba(255,255,255,0.05);
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.nav-panel.open { max-height: 450px; }
+
+.panel-inner { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
+
+.panel-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
+
+.label {
+    display: block; font-family: 'Fira Code', monospace;
+    font-size: 10px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px; letter-spacing: 2px;
+}
+
+.link-list a {
+    display: block; font-size: 2.2rem; font-weight: 200;
+    text-decoration: none; color: var(--text);
+    margin-bottom: 10px; transition: opacity 0.3s;
+}
+
+.link-list a:hover { opacity: 0.5; }
+
+.featured-link { text-decoration: none; color: var(--text); }
+.project-name { display: block; font-size: 1.2rem; font-weight: 400; }
+.project-desc { font-size: 0.9rem; color: var(--accent); }
+
+.search-wrap input {
+    width: 100%; background: none; border: none;
+    border-bottom: 1px solid var(--accent);
+    padding: 10px 0; color: var(--text); font-family: inherit; outline: none;
+}
+
+/* --- 4. ANIMATIONEN & EFFEKTE --- */
+.burger { 
+    width: 20px; height: 10px; display: flex; 
+    flex-direction: column; justify-content: space-between; 
+    background: none; border: none; cursor: pointer; 
+}
+
+.burger span { width: 100%; height: 1px; background: var(--text); transition: 0.3s; }
+.burger.active span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+.burger.active span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
+
+.ui-btn { background: none; border: none; color: var(--text); cursor: pointer; font-size: 16px; }
+
+#mainContent {
+    transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: filter;
+}
+
+#mainContent.blur {
+    filter: blur(15px) brightness(0.7);
+    pointer-events: none;
+}
+
+/* HERO VEREDELUNG */
+.hero { height: 80vh; display: flex; align-items: center; padding: 0 10%; }
+.hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 200; line-height: 1.1; letter-spacing: -2px; }
+
+.gradient-text {
+    background: linear-gradient(180deg, var(--text) 30%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    opacity: 0.8;
+}
+
+.fade-in { animation: reveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- 5. PROJEKT & FOOTER --- */
+.project-preview {
+    padding: 150px 10%; min-height: 80vh;
+    display: flex; align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.project-title { font-size: clamp(3rem, 10vw, 6rem); font-weight: 200; letter-spacing: -3px; margin: 20px 0; }
+.project-meta { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; margin-bottom: 40px; }
+
+.details-btn {
+    display: inline-block; margin-top: 40px; padding: 15px 30px;
+    border: 1px solid var(--text); color: var(--text);
+    text-decoration: none; font-size: 13px; transition: all 0.3s ease;
+}
+.details-btn:hover { background: var(--text); color: var(--bg); }
+
+.main-footer {
+    padding: 80px 40px; border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--bg); display: flex; justify-content: space-between;
+    font-family: 'Fira Code', monospace; font-size: 10px; color: var(--accent);
+}
+
+.footer-links { display: flex; gap: 30px; }
+.footer-links a { text-decoration: none; color: var(--accent); transition: color 0.3s; }
+.footer-links a:hover { color: var(--text); }
+.fira { font-family: 'Fira Code', monospace; }
